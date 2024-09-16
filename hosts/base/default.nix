@@ -96,9 +96,7 @@
     isNormalUser = true;
     description = "Jakub Kropacek";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-    shell = "/run/current-system/sw/bin/zsh";
+    shell = pkgs.zsh;
   };
 
 
