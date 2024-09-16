@@ -118,6 +118,7 @@
     zoxide
     jetbrains-mono
 	mattermost-desktop
+	gh
   ];
 
 
