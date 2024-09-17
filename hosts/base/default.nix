@@ -111,7 +111,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 	alacritty
-	tailscale
 	gnome-tweaks
 	nixd
     fzf
@@ -119,6 +118,7 @@
     jetbrains-mono
 	mattermost-desktop
 	gh
+	gparted
   ];
 
 
@@ -131,6 +131,8 @@
     firefox.enable = true;
   };
 
+  services.tailscale.enable = true;
+
   services.flatpak = {
     enable = true;
     remotes = [
@@ -139,6 +141,7 @@
     ];
     packages = [
         "org.gnome.World.PikaBackup"
+		"ca.desrt.dconf-editor"
     ];
   };
 

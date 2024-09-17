@@ -69,6 +69,27 @@
     # EDITOR = "emacs";
   };
 
+  gtk = {
+    enable = true;
+    gtk3.extraConfig = {
+        Settings = ''
+        gtk-application-prefer-dark-theme=1
+        '';
+    };
+    gtk4.extraConfig = {
+        Settings = ''
+        gtk-application-prefer-dark-theme=1
+        '';
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
+  };
+
+
   programs.git = {
     enable = true;
     userName = "Jakub Kropáček";
