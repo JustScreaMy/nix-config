@@ -142,6 +142,7 @@
     packages = [
         "org.gnome.World.PikaBackup"
 		"ca.desrt.dconf-editor"
+		"org.onlyoffice.desktopeditors"
     ];
   };
 
