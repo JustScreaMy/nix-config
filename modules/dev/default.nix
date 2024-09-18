@@ -26,6 +26,7 @@ in {
             python3
             python311
             python310
+			poetry
         ];
         tools = with pkgs; [
             lazygit
