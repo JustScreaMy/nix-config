@@ -33,6 +33,7 @@ in {
             lazydocker
             micro-with-wl-clipboard
             albert
+            openssl_3_3
         ];
     in {
         environment.systemPackages = languages
