@@ -21,6 +21,7 @@ in {
             jetbrains.pycharm-professional
             zed-editor
             vscode
+			vscodium
         ];
         languages = with pkgs; [
             python3

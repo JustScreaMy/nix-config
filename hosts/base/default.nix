@@ -113,6 +113,7 @@
 	alacritty
 	gnome-tweaks
 	nixd
+	nil
     fzf
     zoxide
     jetbrains-mono
