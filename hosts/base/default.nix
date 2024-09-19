@@ -110,16 +110,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	alacritty
-	gnome-tweaks
-	nixd
-	nil
+    alacritty
+    gnome-tweaks
+    nixd
+    nil
     fzf
     zoxide
     jetbrains-mono
-	mattermost-desktop
-	gh
-	gparted
+    mattermost-desktop
+    gh
+    gparted
+	  dig
   ];
 
 
@@ -142,8 +143,8 @@
     ];
     packages = [
         "org.gnome.World.PikaBackup"
-		"ca.desrt.dconf-editor"
-		"org.onlyoffice.desktopeditors"
+        "ca.desrt.dconf-editor"
+        "org.onlyoffice.desktopeditors"
 		"tv.kodi.Kodi"
     ];
   };
