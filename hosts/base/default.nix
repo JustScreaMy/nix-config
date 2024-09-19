@@ -49,6 +49,7 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.gnome-browser-connector.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
     epiphany
@@ -68,7 +69,7 @@
 
   # Enable CUPS to print documents.
   services.printing = {
-	enable = true;
+	  enable = true;
   	drivers = [ pkgs.samsung-unified-linux-driver ];
   };
 
@@ -121,6 +122,9 @@
     gh
     gparted
 	  dig
+    prismlauncher # REMOVE AND MOVE TO games module after refactoring
+    gnome-extension-manager # DEBUG
+    gnomeExtensions.grand-theft-focus
   ];
 
 
@@ -145,7 +149,7 @@
         "org.gnome.World.PikaBackup"
         "ca.desrt.dconf-editor"
         "org.onlyoffice.desktopeditors"
-		"tv.kodi.Kodi"
+		    "tv.kodi.Kodi"
     ];
   };
 
@@ -166,7 +170,10 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
+  networking = {
+    nftables.enable = true;
+    firewall.checkReversePath = "loose";
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

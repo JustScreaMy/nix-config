@@ -20,7 +20,6 @@ in {
         ides = with pkgs; [
             jetbrains.pycharm-professional
             zed-editor
-            vscode
 			vscodium
         ];
         languages = with pkgs; [

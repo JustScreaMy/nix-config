@@ -16,6 +16,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    gnomeExtensions.grand-theft-focus
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # hello
@@ -69,6 +70,16 @@
     # EDITOR = "emacs";
   };
 
+  dconf = {
+    enable = true;
+    settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = with pkgs.gnomeExtensions; [
+        grand-theft-focus.extensionUuid
+      ];
+    };
+  };
+
   gtk = {
     enable = true;
     gtk3.extraConfig = {
@@ -85,7 +96,7 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
+    platformTheme.name = "adwaita"; # TODO: fix themes
     style.name = "adwaita-dark";
   };
 
@@ -94,9 +105,20 @@
     enable = true;
     userName = "Jakub Kropáček";
     userEmail = "kropikuba@gmail.com";
-    includes = [
-        {path = "~/Repositories/OLC/.gitconfig"; condition = "gitdir:~/Repositories/OLC/**";}
-        {path = "~/Repositories/OLC-Hexpol/.gitconfig"; condition = "gitdir:~/Repositories/OLC-Hexpol/**";}
+    includes = let workcfg = {
+      user = {
+        email = "jakub.kropacek@olc.cz";
+        name = "Jakub Kropáček";
+      };
+    }; in [
+        {
+          condition = "gitdir:~/Repositories/OLC/**";
+          contents = workcfg;
+        }
+        {
+          condition = "gitdir:~/Repositories/OLC-Hexpol/**";
+          contents = workcfg;
+        }
     ];
     extraConfig = {
         init = {
