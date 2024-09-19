@@ -4,7 +4,13 @@
     ];
 
     # My own modules configuration
-    krop.devtools.installIDE = true;
+    krop = {
+        ide = {
+            enable = true;
+            install-pycharm = true;
+        };
+        python.install-older = true;
+    };
 
     home-manager = {
         extraSpecialArgs = { inherit inputs; };

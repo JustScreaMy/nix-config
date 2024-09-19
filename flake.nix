@@ -19,6 +19,7 @@
         work-ntb = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
+                ./nixosModules
                 ./hosts/work-ntb
                 inputs.nix-flatpak.nixosModules.nix-flatpak
                 inputs.home-manager.nixosModules.home-manager
