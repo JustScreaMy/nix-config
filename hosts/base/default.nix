@@ -2,13 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, hostname, ... }:
+{
+  config,
+  pkgs,
+  hostname,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../${hostname}/hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ../${hostname}/hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -68,8 +73,8 @@
 
   # Enable CUPS to print documents.
   services.printing = {
-	  enable = true;
-  	drivers = [ pkgs.samsung-unified-linux-driver ];
+    enable = true;
+    drivers = [ pkgs.samsung-unified-linux-driver ];
   };
 
   # Enable sound with pipewire.
@@ -95,17 +100,21 @@
   users.users.krop = {
     isNormalUser = true;
     description = "Jakub Kropacek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -120,12 +129,11 @@
     mattermost-desktop
     gh
     gparted
-	  dig
+    dig
     prismlauncher # REMOVE AND MOVE TO games module after refactoring
     gnome-extension-manager # DEBUG
     gnomeExtensions.grand-theft-focus
   ];
-
 
   programs = {
     tmux.enable = true;
@@ -141,14 +149,20 @@
   services.flatpak = {
     enable = true;
     remotes = [
-        { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
-        { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
     ];
     packages = [
-        "org.gnome.World.PikaBackup"
-        "ca.desrt.dconf-editor"
-        "org.onlyoffice.desktopeditors"
-		    "tv.kodi.Kodi"
+      "org.gnome.World.PikaBackup"
+      "ca.desrt.dconf-editor"
+      "org.onlyoffice.desktopeditors"
+      "tv.kodi.Kodi"
     ];
   };
 

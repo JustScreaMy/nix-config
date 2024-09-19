@@ -83,14 +83,14 @@
   gtk = {
     enable = true;
     gtk3.extraConfig = {
-        Settings = ''
+      Settings = ''
         gtk-application-prefer-dark-theme=1
-        '';
+      '';
     };
     gtk4.extraConfig = {
-        Settings = ''
+      Settings = ''
         gtk-application-prefer-dark-theme=1
-        '';
+      '';
     };
   };
 
@@ -100,17 +100,20 @@
     style.name = "adwaita-dark";
   };
 
-
   programs.git = {
     enable = true;
     userName = "Jakub Kropáček";
     userEmail = "kropikuba@gmail.com";
-    includes = let workcfg = {
-      user = {
-        email = "jakub.kropacek@olc.cz";
-        name = "Jakub Kropáček";
-      };
-    }; in [
+    includes =
+      let
+        workcfg = {
+          user = {
+            email = "jakub.kropacek@olc.cz";
+            name = "Jakub Kropáček";
+          };
+        };
+      in
+      [
         {
           condition = "gitdir:~/Repositories/OLC/**";
           contents = workcfg;
@@ -119,23 +122,23 @@
           condition = "gitdir:~/Repositories/OLC-Hexpol/**";
           contents = workcfg;
         }
-    ];
+      ];
     extraConfig = {
-        init = {
-            defaultBranch = "master";
-        };
-        push = {
-            autoSetupRemote = true;
-        };
-        status = {
-            submoduleSummary = true;
-        };
-        diff = {
-            submodule = "log";
-        };
-        core = {
-            autocrlf = "input";
-        };
+      init = {
+        defaultBranch = "master";
+      };
+      push = {
+        autoSetupRemote = true;
+      };
+      status = {
+        submoduleSummary = true;
+      };
+      diff = {
+        submodule = "log";
+      };
+      core = {
+        autocrlf = "input";
+      };
     };
   };
 
