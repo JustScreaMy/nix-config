@@ -23,8 +23,7 @@
           modules = [
             ./nixosModules # TODO: move to base
             ./hosts/work-ntb
-            inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
-            inputs.home-manager.nixosModules.home-manager # TODO: move to base
+            ./hosts/base
           ];
           specialArgs = {
             hostname = "work-ntb";

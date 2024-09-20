@@ -6,11 +6,11 @@
 }:
 {
   imports = [
-    (import ../base {
-      inherit config pkgs;
-      hostname = "work-ntb";
-    })
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
   ];
+
+  networking.hostName = "work-ntb"; # Define your hostname.
 
   # My own modules configuration
   krop = {

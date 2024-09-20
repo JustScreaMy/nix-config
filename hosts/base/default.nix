@@ -5,21 +5,20 @@
 {
   config,
   pkgs,
-  hostname,
   ...
-}:
+}@extraInputs:
 
 {
+
   imports = [
-    # Include the results of the hardware scan.
-    ../${hostname}/hardware-configuration.nix
+    extraInputs.inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
+    extraInputs.inputs.home-manager.nixosModules.home-manager # TODO: move to base
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant. Not needed if using GNOME
 
   # Configure network proxy if necessary
