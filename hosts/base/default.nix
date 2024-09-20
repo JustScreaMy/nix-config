@@ -5,25 +5,24 @@
 {
   config,
   pkgs,
+  inputs,
   ...
-}@inputs:
+}:
 
 {
 
   imports = [
-    inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
     inputs.home-manager.nixosModules.home-manager # TODO: move to base
+    inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
+    ../../nixosModules
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant. Not needed if using GNOME
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -47,11 +46,13 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
+  
   services.gnome.gnome-browser-connector.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [

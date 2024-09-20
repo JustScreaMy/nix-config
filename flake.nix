@@ -21,13 +21,10 @@
         work-ntb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixosModules # TODO: move to base
             ./hosts/work-ntb
             ./hosts/base
           ];
-        };
-        extraSpecialArgs = {
-          inherit (inputs) home-manager nix-flatpak;
+          specialArgs = { inherit inputs; };
         };
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
