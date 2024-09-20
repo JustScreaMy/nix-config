@@ -133,6 +133,7 @@
     prismlauncher # REMOVE AND MOVE TO games module after refactoring
     gnome-extension-manager # DEBUG
     gnomeExtensions.grand-theft-focus
+    joplin-desktop
   ];
 
   programs = {
