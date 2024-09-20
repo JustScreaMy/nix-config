@@ -21,10 +21,10 @@
         work-ntb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixosModules
+            ./nixosModules # TODO: move to base
             ./hosts/work-ntb
-            inputs.nix-flatpak.nixosModules.nix-flatpak
-            inputs.home-manager.nixosModules.home-manager
+            inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
+            inputs.home-manager.nixosModules.home-manager # TODO: move to base
           ];
           specialArgs = {
             hostname = "work-ntb";
