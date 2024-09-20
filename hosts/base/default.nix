@@ -52,7 +52,7 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
-  
+
   services.gnome.gnome-browser-connector.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
