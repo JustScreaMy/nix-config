@@ -11,6 +11,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko.url = "github:nix-community/disko";
   };
 
   outputs =
@@ -23,6 +25,17 @@
           modules = [
             ./hosts/work-ntb
             ./hosts/base
+          ];
+          specialArgs = {
+            inherit inputs;
+          };
+        };
+        lenar = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/lenar
+            ./hosts/base
+            inputs.disko.nixosModules.disko
           ];
           specialArgs = {
             inherit inputs;
