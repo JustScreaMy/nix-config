@@ -35,7 +35,6 @@
           modules = [
             ./hosts/lenar
             ./hosts/base
-            inputs.disko.nixosModules.disko
           ];
           specialArgs = {
             inherit inputs;

@@ -8,6 +8,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./disko.nix
   ];
 
   networking.hostName = "lenar"; # Define your hostname.
