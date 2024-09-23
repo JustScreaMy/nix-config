@@ -72,11 +72,19 @@
 
   dconf = {
     enable = true;
-    settings."org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = with pkgs.gnomeExtensions; [
-        grand-theft-focus.extensionUuid
-      ];
+    settings = {
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = with pkgs.gnomeExtensions; [
+          grand-theft-focus.extensionUuid
+        ];
+      };
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+      "/org/gnome/desktop/peripherals/touchpad/" = {
+        natural-scroll = false;
+      };
     };
   };
 
