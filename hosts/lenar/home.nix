@@ -78,12 +78,38 @@
         enabled-extensions = with pkgs.gnomeExtensions; [
           grand-theft-focus.extensionUuid
         ];
+        favorite-apps = [
+          "firefox.desktop"
+          "Alacritty.desktop"
+          "thunderbird.desktop"
+          "org.gnome.Nautilus.desktop"
+        ];
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
       };
+      "org/gnome/mutter" = {
+        dynamic-workspaces = true;
+        edge-tiling = true;
+        workspaces-only-on-primary = true;
+      };
       "org/gnome/desktop/peripherals/touchpad" = {
         natural-scroll = false;
+        click-method = "areas";
+      };
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "appmenu:minimize,maximize,close";
+        resize-with-right-button = true;
+      };
+      "org/gnome/desktop/search-providers" = {
+        disabled = [
+          "org.gnome.Contacts.desktop"
+          "org.gnome.Calculator.desktop"
+          "org.gnome.Calendar.desktop"
+          "org.gnome.Characters.desktop"
+          "org.gnome.clocks.desktop"
+          "org.gnome.Software.desktop"
+        ];
       };
     };
   };
