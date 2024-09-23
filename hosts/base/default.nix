@@ -2,25 +2,27 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, hostname, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../${hostname}/hardware-configuration.nix
-      ../../modules/dev
-    ];
+
+  imports = [
+    inputs.home-manager.nixosModules.home-manager # TODO: move to base
+    inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
+    ../../nixosModules
+  ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = hostname; # Define your hostname.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant. Not needed if using GNOME
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -44,11 +46,13 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   services.gnome.gnome-browser-connector.enable = true;
 
   environment.gnome.excludePackages = with pkgs; [
@@ -69,8 +73,8 @@
 
   # Enable CUPS to print documents.
   services.printing = {
-	  enable = true;
-  	drivers = [ pkgs.samsung-unified-linux-driver ];
+    enable = true;
+    drivers = [ pkgs.samsung-unified-linux-driver ];
   };
 
   # Enable sound with pipewire.
@@ -96,17 +100,21 @@
   users.users.krop = {
     isNormalUser = true;
     description = "Jakub Kropacek";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -121,12 +129,12 @@
     mattermost-desktop
     gh
     gparted
-	  dig
+    dig
     prismlauncher # REMOVE AND MOVE TO games module after refactoring
     gnome-extension-manager # DEBUG
     gnomeExtensions.grand-theft-focus
+    joplin-desktop
   ];
-
 
   programs = {
     tmux.enable = true;
@@ -142,14 +150,20 @@
   services.flatpak = {
     enable = true;
     remotes = [
-        { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
-        { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
     ];
     packages = [
-        "org.gnome.World.PikaBackup"
-        "ca.desrt.dconf-editor"
-        "org.onlyoffice.desktopeditors"
-		    "tv.kodi.Kodi"
+      "org.gnome.World.PikaBackup"
+      "ca.desrt.dconf-editor"
+      "org.onlyoffice.desktopeditors"
+      "tv.kodi.Kodi"
     ];
   };
 

@@ -8,9 +8,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./disko.nix
   ];
 
-  networking.hostName = "work-ntb"; # Define your hostname.
+  networking.hostName = "lenar"; # Define your hostname.
 
   # My own modules configuration
   krop = {
