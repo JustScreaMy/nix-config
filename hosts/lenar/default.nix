@@ -23,6 +23,15 @@
     python.install-older = true;
   };
 
+  systemd.services.configure-mic-leds = rec {
+    wantedBy = [ "sound.target" ];
+    after = wantedBy;
+    serviceConfig.Type = "oneshot";
+    script = ''
+      echo follow-route > /sys/class/sound/ctl-led/mic/mode
+    '';
+  };
+
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
