@@ -162,6 +162,8 @@
       "ca.desrt.dconf-editor"
       "org.onlyoffice.desktopeditors"
       "tv.kodi.Kodi"
+      "com.valvesoftware.Steam"
+      "com.github.tchx84.Flatseal"
     ];
   };
 
