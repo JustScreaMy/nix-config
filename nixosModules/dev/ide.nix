@@ -25,7 +25,14 @@ in
       with pkgs;
       [
         zed-editor
-        vscodium
+        (vscode-with-extensions.override {
+          vscode = vscodium;
+          vscodeExtensions = with vscode-extensions; [
+            jnoortheen.nix-ide
+            tamasfe.even-better-toml
+          ];
+          }
+        )
       ]
       ++ lib.optionals cfg.install-pycharm [ pkgs.jetbrains.pycharm-professional ];
   };
