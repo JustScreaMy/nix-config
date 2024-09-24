@@ -12,8 +12,8 @@
 {
 
   imports = [
-    inputs.home-manager.nixosModules.home-manager # TODO: move to base
-    inputs.nix-flatpak.nixosModules.nix-flatpak # TODO: move to base
+    inputs.home-manager.nixosModules.home-manager
+    inputs.nix-flatpak.nixosModules.nix-flatpak
     ../../nixosModules
   ];
 
