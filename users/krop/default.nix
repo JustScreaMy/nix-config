@@ -158,7 +158,72 @@
       bindkey "^[[1;3C" forward-word
       bindkey "^[[1;5C" forward-word
       bindkey "^[[3~" delete-char
+
+      autoload -Uz vcs_info
+      setopt auto_menu
+      setopt complete_in_word
+      setopt always_to_end
+
+      # zstyle command format
+      # zstyle :<namespace>:<function>:<completer>:<command>:<argument>:<tag> <style> <value>
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' special-dirs true
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|=*' 'l:|=* r:|=*'
+      zstyle ':completion:*' use-cache on
+      zstyle ':completion:*' cache-path "$ZSH/.zsh/.zcompcache"
+
+
+      precmd() {
+          vcs_info
+          is_toolbx_container
+      }
+
+      setopt PROMPT_SUBST
+
+      zstyle ':vcs_info:git:*' formats '[%b] '
+
+      is_toolbx_container() {
+          if [[ -f /run/.containerenv ]]; then
+              CONTAINER_NAME=$(grep -oP 'name="\K[^"]+' /run/.containerenv)
+              TOOLBX_INDICATOR="[%F{magenta}''${CONTAINER_NAME}%f] "
+          else
+              TOOLBX_INDICATOR=""
+          fi
+      }
+
+      PROMPT='%2~ ''${TOOLBX_INDICATOR}''${vcs_info_msg_0_}»%b '
     '';
+    dotDir = ".zsh";
+    completionInit = "autoload -U compinit; compinit -d $ZSH/.zcompdump";
+    history.path = "$ZDOTDIR/.zsh_history";
+    shellAliases = {
+      lg="lazygit";
+      cls="clear";
+      open="xdg-open";
+      fire="firefox";
+      la="ls -al --color=auto";
+      gs="git status";
+      ga="git add";
+      gaa="git add --all";
+      cg-run="cargo run";
+      cg-build="cargo build";
+      cg-test="cargo test";
+      dc="docker compose";
+      dc-build="dc build";
+      dc-run="dc run --rm";
+      dc-runr="dc-run -u root";
+      dc-up="dc up";
+      dc-upd="dc up -d";
+      dc-down="dc down";
+      dc-ls="dc ls";
+      dc-pull="dc pull";
+      ds-env="env $(cat .env | grep \"^[A-Z]\" | xargs) docker stack";
+      bw-unlock="BW_SESSION=$(bw unlock --raw) && export BW_SESSION";
+      t="tmux";
+      pc="pre-commit";
+      tb="toolbox";
+    };
   };
 
   programs.git = {
