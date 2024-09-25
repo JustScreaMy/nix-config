@@ -37,7 +37,7 @@
       inherit inputs;
     };
     users = {
-      "krop" = import ./home.nix;
+      "krop" = import ../../users/krop;
     };
   };
 }

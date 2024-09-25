@@ -138,10 +138,27 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-      yzhang.markdown-all-in-one
+      jnoortheen.nix-ide
+      tamasfe.even-better-toml
     ];
+  };
+
+  programs.zoxide = {
+    enable = true;
+    options = [
+      "--cmd cd"
+    ];
+  };
+
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      bindkey "^[[1;3D" backward-word
+      bindkey "^[[1;5D" backward-word
+      bindkey "^[[1;3C" forward-word
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[3~" delete-char
+    '';
   };
 
   programs.git = {
