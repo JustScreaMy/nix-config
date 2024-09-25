@@ -198,31 +198,41 @@
     completionInit = "autoload -U compinit; compinit -d $ZSH/.zcompdump";
     history.path = "$ZDOTDIR/.zsh_history";
     shellAliases = {
-      lg="lazygit";
-      cls="clear";
-      open="xdg-open";
-      fire="firefox";
-      la="ls -al --color=auto";
-      gs="git status";
-      ga="git add";
-      gaa="git add --all";
-      cg-run="cargo run";
-      cg-build="cargo build";
-      cg-test="cargo test";
-      dc="docker compose";
-      dc-build="dc build";
-      dc-run="dc run --rm";
-      dc-runr="dc-run -u root";
-      dc-up="dc up";
-      dc-upd="dc up -d";
-      dc-down="dc down";
-      dc-ls="dc ls";
-      dc-pull="dc pull";
-      ds-env="env $(cat .env | grep \"^[A-Z]\" | xargs) docker stack";
-      bw-unlock="BW_SESSION=$(bw unlock --raw) && export BW_SESSION";
-      t="tmux";
-      pc="pre-commit";
-      tb="toolbox";
+      lg = "lazygit";
+      cls = "clear";
+      open = "xdg-open";
+      fire = "firefox";
+      la = "ls -al --color=auto";
+      gs = "git status";
+      ga = "git add";
+      gaa = "git add --all";
+      cg-run = "cargo run";
+      cg-build = "cargo build";
+      cg-test = "cargo test";
+      dc = "docker compose";
+      dc-build = "dc build";
+      dc-run = "dc run --rm";
+      dc-runr = "dc-run -u root";
+      dc-up = "dc up";
+      dc-upd = "dc up -d";
+      dc-down = "dc down";
+      dc-ls = "dc ls";
+      dc-pull = "dc pull";
+      ds-env = "env $(cat .env | grep \"^[A-Z]\" | xargs) docker stack";
+      bw-unlock = "BW_SESSION=$(bw unlock --raw) && export BW_SESSION";
+      t = "tmux";
+      pc = "pre-commit";
+      tb = "toolbox";
+    };
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      import = [ "${pkgs.alacritty-theme}/gnome_terminal.toml" ];
+      font = {
+        size = 16;
+      };
     };
   };
 
@@ -234,14 +244,14 @@
       sensible
     ];
     extraConfig = ''
-    # Move status bar to top
-    set -g status-position top
+      # Move status bar to top
+      set -g status-position top
 
-    # Indexing from 1 instead of 0
-    set -g base-index 1
-    set -g pane-base-index 1
-    set-window-option -g pane-base-index 1
-    set-option -g renumber-windows on
+      # Indexing from 1 instead of 0
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
     '';
   };
 

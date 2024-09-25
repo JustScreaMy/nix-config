@@ -120,6 +120,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
+    alacritty-theme
     gnome-tweaks
     nixd
     nil
