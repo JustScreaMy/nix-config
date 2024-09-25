@@ -226,6 +226,25 @@
     };
   };
 
+  programs.tmux = {
+    enable = true;
+    mouse = true;
+    plugins = with pkgs.tmuxPlugins; [
+      yank
+      sensible
+    ];
+    extraConfig = ''
+    # Move status bar to top
+    set -g status-position top
+
+    # Indexing from 1 instead of 0
+    set -g base-index 1
+    set -g pane-base-index 1
+    set-window-option -g pane-base-index 1
+    set-option -g renumber-windows on
+    '';
+  };
+
   programs.git = {
     enable = true;
     userName = "Jakub Kropáček";

@@ -28,6 +28,7 @@ in
       [
         openssl_3_3
         dig
+        wl-clipboard
       ]
       ++ lib.optionals cfg.install-editors [
         pkgs.lazygit
