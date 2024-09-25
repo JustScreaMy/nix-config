@@ -89,6 +89,7 @@
       };
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
+        show-battery-percentage = true;
       };
       "org/gnome/mutter" = {
         dynamic-workspaces = true;
@@ -111,6 +112,16 @@
           "org.gnome.Characters.desktop"
           "org.gnome.clocks.desktop"
           "org.gnome.Software.desktop"
+        ];
+      };
+      "org/gnome/shell/extensions/vitals" = {
+        position-in-panel = 0;
+        show-battery = true;
+        icon-style = 1;
+        hot-sensors = [
+          "__temperature_max__"
+          "_memory_available_"
+          "_storage_free_"
         ];
       };
     };
