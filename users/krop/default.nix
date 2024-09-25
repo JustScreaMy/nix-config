@@ -17,6 +17,7 @@
   # environment.
   home.packages = with pkgs; [
     gnomeExtensions.grand-theft-focus
+    gnomeExtensions.vitals
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # hello
@@ -77,6 +78,7 @@
         disable-user-extensions = false;
         enabled-extensions = with pkgs.gnomeExtensions; [
           grand-theft-focus.extensionUuid
+          vitals.extensionUuid
         ];
         favorite-apps = [
           "firefox.desktop"
