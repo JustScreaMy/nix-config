@@ -41,6 +41,7 @@ in
         openssl_3_3
         dig
         wl-clipboard
+        bitwarden-cli
       ]
       ++ lib.optionals cfg.install-editors [
         pkgs.lazygit

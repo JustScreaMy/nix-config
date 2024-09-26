@@ -29,6 +29,9 @@
       install-k8s-tools = true;
       install-cloud-cli = true;
     };
+    docker = {
+      enable = true;
+    };
   };
 
   systemd.services.configure-mic-leds = rec {

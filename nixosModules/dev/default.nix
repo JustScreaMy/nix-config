@@ -9,5 +9,6 @@
     ./python.nix
     ./ide.nix
     ./cli.nix
+    ./docker.nix
   ];
 }
