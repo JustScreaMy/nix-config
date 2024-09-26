@@ -124,6 +124,15 @@
           "_storage_free_"
         ];
       };
+      "org/gnome/desktop/background" =
+        let
+          bgPath = "file://${./nyan_cat.jpg}";
+        in
+        {
+          picture-options = "zoom";
+          picture-uri = bgPath;
+          picture-uri-dark = bgPath;
+        };
     };
   };
 
