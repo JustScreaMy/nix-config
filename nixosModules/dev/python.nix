@@ -27,6 +27,7 @@ in
       [
         python3
         poetry
+        pre-commit
       ]
       ++ lib.optionals cfg.install-older [
         python311
