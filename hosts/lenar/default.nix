@@ -28,7 +28,7 @@
     after = wantedBy;
     serviceConfig.Type = "oneshot";
     script = ''
-      echo follow-route > /sys/class/sound/ctl-led/mic/mode
+      echo off > /sys/class/sound/ctl-led/mic/mode
     '';
   };
 
