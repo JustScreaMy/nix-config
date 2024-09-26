@@ -21,6 +21,18 @@ in
       example = true;
       description = "Whether to install cli editors";
     };
+    install-k8s-tools = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      example = true;
+      description = "Whether to install k8s tools";
+    };
+    install-cloud-cli = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      example = true;
+      description = "Whether to install cloud providers CLI clients";
+    };
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages =
@@ -34,6 +46,14 @@ in
         pkgs.lazygit
         pkgs.lazydocker
         pkgs.micro-with-wl-clipboard
+      ]
+      ++ lib.optionals cfg.install-k8s-tools [
+        pkgs.k9s
+        pkgs.kubectl
+        pkgs.kubectx
+      ]
+      ++ lib.optionals cfg.install-cloud-cli [
+        pkgs.oci-cli
       ];
   };
 }

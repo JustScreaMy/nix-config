@@ -20,7 +20,15 @@
       enable = true;
       install-pycharm = true;
     };
-    python.install-older = true;
+    python = {
+      enable = true;
+      install-older = true;
+    };
+    cli = {
+      enable = true;
+      install-k8s-tools = true;
+      install-cloud-cli = true;
+    };
   };
 
   systemd.services.configure-mic-leds = rec {
