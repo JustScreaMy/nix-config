@@ -42,6 +42,8 @@ in
         dig
         wl-clipboard
         bitwarden-cli
+        direnv
+        nix-direnv
       ]
       ++ lib.optionals cfg.install-editors [
         pkgs.lazygit
