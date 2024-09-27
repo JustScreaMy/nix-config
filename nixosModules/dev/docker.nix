@@ -28,7 +28,7 @@ in
       enable = true;
     };
     users.users.krop = lib.mkIf cfg.addUserToGroup {
-      extraGroups = ["docker"];
+      extraGroups = [ "docker" ];
     };
   };
 }
