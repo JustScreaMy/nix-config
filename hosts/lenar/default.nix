@@ -12,6 +12,8 @@
     ./disko.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "lenar"; # Define your hostname.
 
   # My own modules configuration
